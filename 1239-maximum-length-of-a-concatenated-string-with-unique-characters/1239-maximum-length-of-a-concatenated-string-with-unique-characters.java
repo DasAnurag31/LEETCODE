@@ -9,14 +9,17 @@ class Solution {
     }
     public int solve(List<String> arr , int idx, String res){
         if(idx == arr.size()){
-            return isApplicable(res);
+            return isApplicable(res); // see if the string is valid i.e unique
         }
         
         int len  = res.length();
-        res += (arr.get(idx));
+        
+        res += (arr.get(idx)); // take
         int size1 = solve(arr , idx + 1 , res);
-        int size2 = solve(arr , idx + 1 , res.substring(0,len));
-        return Math.max(size1, size2);
+        res=res.substring(0,len); //not take
+        int size2 = solve(arr , idx + 1 , res);
+        
+        return Math.max(size1, size2); // claculate the maximum of subsequences max(left,right)
     }
     
     public int maxLength(List<String> arr) {
